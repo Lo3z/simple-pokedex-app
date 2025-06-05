@@ -1,0 +1,29 @@
+:root{
+    --primary-color:  #da4747;
+}
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.pokemonButton{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 32px;
+    border: 1px solid black;
+    border-radius: 5px;
+    border-bottom: 2px solid rbga(0,0,0,0.3);
+    margin: 4px 2px;
+    text-decoration: none;
+}
+
+button:hover, button:focus, .pokemonButton:hover, .pokemonButton:focus {
+    cursor:pointer;
+    opacity: 0.8;
+    color: white;
+}
