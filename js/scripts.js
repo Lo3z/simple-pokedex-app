@@ -57,9 +57,68 @@ let pokemonRepository = (function(){
         });
     }
 
+    function showModal(pokemon){
+        console.log('inside showModal :)')
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.innerHTML = '';
+        console.log('Pokemon: ', pokemon)
+
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
+       
+        let titleElement = document.createElement('h1');
+        let contentElementHeight = document.createElement('p');
+        let contentElementImg = document.createElement('img');
+
+        //Name
+        titleElement.innerText = pokemon.name;
+
+        //Height
+        contentElementHeight.innerText = "Height: " + pokemon.height;
+
+        //Image
+        contentElementImg.src = pokemon.imageUrl;
+
+
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElementHeight);
+        modal.appendChild(contentElementImg);
+
+        modalContainer.appendChild(modal);
+        
+        modalContainer.classList.add('is-visible');
+
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+            hideModal();
+            }
+        });
+
+    }
+
+    function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
+        modalContainer.innerHTML = '';
+    }
+
+    window.addEventListener('keydown', (e) => {
+    let modalContainer = document.querySelector('#modal-container');
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+        hideModal();
+    }
+});
+
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
-            console.log(pokemon);
+            showModal(pokemon);
         });
     }
 
